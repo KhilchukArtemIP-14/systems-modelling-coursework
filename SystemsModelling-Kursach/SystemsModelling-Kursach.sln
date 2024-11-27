@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemsModelling-Kursach", "SystemsModelling-Kursach\SystemsModelling-Kursach.csproj", "{6DB7477A-9B79-427A-B1FF-6AB3773F3655}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemsModelling-Kursach.BuildingBlocks", "SystemsModelling-Kursach.BuildingBlocks\SystemsModelling-Kursach.BuildingBlocks.csproj", "{7BE69A74-A9B9-428F-B64B-5F18195229E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DB7477A-9B79-427A-B1FF-6AB3773F3655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DB7477A-9B79-427A-B1FF-6AB3773F3655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DB7477A-9B79-427A-B1FF-6AB3773F3655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DB7477A-9B79-427A-B1FF-6AB3773F3655}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BE69A74-A9B9-428F-B64B-5F18195229E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BE69A74-A9B9-428F-B64B-5F18195229E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BE69A74-A9B9-428F-B64B-5F18195229E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BE69A74-A9B9-428F-B64B-5F18195229E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE54177E-F97F-4293-A6C7-DF206D806E01}
+	EndGlobalSection
+EndGlobal

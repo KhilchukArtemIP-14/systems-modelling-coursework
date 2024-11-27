@@ -11,16 +11,11 @@ namespace SystemsModelling_Kursach
     {
         static void Main(string[] args)
         {
-            /*var position1 = new Position("P1", 1);
-            var position2 = new Position("P2", 0);
 
-            var transition = new Transition("T1",new ExponentialDelayGenerator(1m/5m), new() { position1}, new() { position1,position2 });
+            var verificator = new VerificationService(PetriSimFactory.GenericTransportSystem);
+            verificator.Verify();
 
-            var sim = new PetriSim(new() { transition });
-            sim.Simulate(10000);
-            Console.WriteLine(position2.MarkerCount);*/
-
-            /*for(int i = 0;i<20;i++)
+            for (int i = 0;i<20;i++)
             {
                 Console.WriteLine($"Simulation number {i+1}");
                 var model = PetriSimFactory.GenericTransportSystem(
@@ -32,20 +27,12 @@ namespace SystemsModelling_Kursach
 
                 model.PetriSim.Simulate(100_000, 11250);
 
-                model.StatsModule.PrintStats(400_000 - 11250);
-            }*/
+                model.StatsModule.PrintStats();
+            }
 
-            /*var verificator = new VerificationService(PetriSimFactory.ModifiedTransportSystem);
 
+            verificator = new VerificationService(PetriSimFactory.ModifiedTransportSystem);
             verificator.Verify();
-
-            var yoho = PetriSimFactory.ModifiedTransportSystemIntervalStatsGather(750);
-
-            yoho.PetriSim.Simulate(30000);
-
-            var module = yoho.StatsModule as ModifiedTransportSystemXlsxStatsModule;
-
-            module.ToXlsx(@"C:\Users\artem\OneDrive\Documents\KPI4_1\modelsys\kursach\data.xlsx");*/
 
             for (int i = 0; i < 20; i++)
             {
@@ -61,18 +48,6 @@ namespace SystemsModelling_Kursach
 
                 model.StatsModule.PrintStats();
             }
-
-            /*var verificator = new VerificationService();
-
-            verificator.Verify();*/
-
-            /*var yoho = PetriSimFactory.TransportSystemIntervalStatsGather(750);
-
-            yoho.PetriSim.Simulate(30000);
-
-            var module = yoho.StatsModule as TransportSystemXlsxStatsModule;
-
-            module.ToXlsx(@"C:\Users\artem\OneDrive\Documents\KPI4_1\modelsys\kursach\data.xlsx");*/
         }
     }
 }

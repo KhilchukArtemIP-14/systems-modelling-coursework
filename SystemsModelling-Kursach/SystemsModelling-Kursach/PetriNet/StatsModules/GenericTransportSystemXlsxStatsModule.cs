@@ -20,7 +20,7 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.StatsModules
         private decimal _lastTimeDoneStats;
         private readonly decimal _stepTimeTreshold;
         private decimal _timeElapsed;
-        private Dictionary<string, Position> _positions;
+        private Dictionary<string, Place> _places;
         private List<(decimal,decimal, decimal, decimal, decimal, decimal, decimal, decimal, decimal)> _statsStory;
         public decimal MeanQueueE1 => _meanQueueE1;
         public decimal MeanQueueE2 => _meanQueueE2;
@@ -32,7 +32,7 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.StatsModules
         public decimal OccupationE3 => _occupationE3;
         public decimal OccupationG => _occupationG;
 
-        public GenericTransportSystemXlsxStatsModule(Dictionary<string, Position> positions, decimal stepTimeTreshold, decimal skipTime = 0)
+        public GenericTransportSystemXlsxStatsModule(Dictionary<string, Place> places, decimal stepTimeTreshold, decimal skipTime = 0)
         {
             _meanQueueE1 = 0;
             _meanQueueE2 = 0;
@@ -44,7 +44,7 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.StatsModules
             _occupationE3 = 0;
             _occupationG = 0;
 
-            _positions = positions;
+            _places = places;
             _stepTimeTreshold = stepTimeTreshold;
             _lastTimeDoneStats = 0;
             _timeElapsed = skipTime;
@@ -55,16 +55,16 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.StatsModules
         {
             var delta = timeCurrent - _lastTimeDoneStats;
 
-            _meanQueueE1 += (_positions["B1_F"].MarkerCount + _positions["S1_F"].MarkerCount) * delta;
-            _meanQueueE2 += (_positions["B2_F"].MarkerCount + _positions["S2_F"].MarkerCount) * delta;
-            _meanQueueE3 += (_positions["B3_F"].MarkerCount + _positions["S3_F"].MarkerCount) * delta;
-            _meanQueueG += _positions
+            _meanQueueE1 += (_places["B1_F"].MarkerCount + _places["S1_F"].MarkerCount) * delta;
+            _meanQueueE2 += (_places["B2_F"].MarkerCount + _places["S2_F"].MarkerCount) * delta;
+            _meanQueueE3 += (_places["B3_F"].MarkerCount + _places["S3_F"].MarkerCount) * delta;
+            _meanQueueG += _places
                             .Where(kv => Regex.IsMatch(kv.Key, @"^(S|B)([1-3])_\1Q[1-3]$"))
                             .Sum(kv => kv.Value.MarkerCount) * delta;
-            _occupationE1 += (1 - _positions["E1_F"].MarkerCount) * delta;
-            _occupationE2 += (1 - _positions["E2_F"].MarkerCount) * delta;
-            _occupationE3 += (1 - _positions["E3_F"].MarkerCount) * delta;
-            _occupationG += (1 - _positions["G_F"].MarkerCount) * delta;
+            _occupationE1 += (1 - _places["E1_F"].MarkerCount) * delta;
+            _occupationE2 += (1 - _places["E2_F"].MarkerCount) * delta;
+            _occupationE3 += (1 - _places["E3_F"].MarkerCount) * delta;
+            _occupationG += (1 - _places["G_F"].MarkerCount) * delta;
 
             _lastTimeDoneStats = timeCurrent;
             _timeElapsed += delta;

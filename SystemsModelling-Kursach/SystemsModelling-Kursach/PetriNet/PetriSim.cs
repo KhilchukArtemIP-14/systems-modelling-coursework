@@ -53,8 +53,6 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet
                     .ThenBy(_=>random.NextDouble()) // randomize
                     .FirstOrDefault(); // first element or null if empty
 
-                var koko = _transitions.Where(t => t.CanTrigger && t.Priority == _transitions.Where(t1=>t1.CanTrigger).Max(t2 => t2.Priority));
-
                 while (activeT != null)
                 {
                     activeT.ActIn(_timeCurrent);

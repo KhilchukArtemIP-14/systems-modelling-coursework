@@ -12,7 +12,7 @@ namespace SystemsModelling_Kursach.BuildingBlocks.Models
     public class PetriModel
     {
         public PetriSim PetriSim { get; set; }
-        public Dictionary<string, Position> Positions { get; set; }
+        public Dictionary<string, Place> Places { get; set; }
         public Dictionary<string, Transition> Transitions { get; set; }
         public IStatsModule StatsModule { get; set; }
     }

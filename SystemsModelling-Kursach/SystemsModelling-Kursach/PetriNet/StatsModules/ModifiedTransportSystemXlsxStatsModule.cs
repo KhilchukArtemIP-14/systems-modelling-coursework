@@ -19,7 +19,7 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.StatsModules
 
         private decimal _lastTimeDoneStats;
         private decimal _timeElapsed;
-        private Dictionary<string, Position> _positions;
+        private Dictionary<string, Place> _places;
         private readonly decimal _stepTimeTreshold;
 
         public decimal MeanQueueE => _meanQueueE;
@@ -31,7 +31,7 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.StatsModules
         private List<(decimal, decimal, decimal, decimal, decimal)> _statsStory;
 
 
-        public ModifiedTransportSystemXlsxStatsModule(Dictionary<string, Position> positions, decimal stepTimeTreshold, decimal skipTime = 0)
+        public ModifiedTransportSystemXlsxStatsModule(Dictionary<string, Place> places, decimal stepTimeTreshold, decimal skipTime = 0)
         {
             _meanQueueE = 0;
             _meanQueueG = 0;
@@ -39,7 +39,7 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.StatsModules
             _occupationE = 0;
             _occupationG = 0;
 
-            _positions = positions;
+            _places = places;
             _stepTimeTreshold = stepTimeTreshold;
             _lastTimeDoneStats = skipTime;
 
@@ -50,13 +50,13 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.StatsModules
         {
             var delta = timeCurrent - _lastTimeDoneStats;
 
-            _meanQueueE += _positions
+            _meanQueueE += _places
                             .Where(kv => Regex.IsMatch(kv.Key, @"^(S|B)F_Q[1-6]$"))
                             .Select(kv => kv.Value.MarkerCount).Sum() * delta;
-            _meanQueueG += (_positions["SQ"].MarkerCount + _positions["BQ"].MarkerCount) * delta;
+            _meanQueueG += (_places["SQ"].MarkerCount + _places["BQ"].MarkerCount) * delta;
 
-            _occupationE += (3 - _positions["E_F"].MarkerCount) / 3m * delta;
-            _occupationG += (1 - _positions["G_F"].MarkerCount) * delta;
+            _occupationE += (3 - _places["E_F"].MarkerCount) / 3m * delta;
+            _occupationG += (1 - _places["G_F"].MarkerCount) * delta;
 
             _lastTimeDoneStats = timeCurrent;
             _timeElapsed += delta;

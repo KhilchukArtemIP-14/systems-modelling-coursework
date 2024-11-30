@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.Elements
 {
-    public class Position
+    public class Place
     {
         private string _name;
         private int _markers;
@@ -20,7 +20,7 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.Elements
             _markers--;
         }
 
-        public Position(string name, int markers = 0)
+        public Place(string name, int markers = 0)
         {
             _markers = markers;
             _name = name;

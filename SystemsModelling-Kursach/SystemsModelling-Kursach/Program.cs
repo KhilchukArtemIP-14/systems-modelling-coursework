@@ -48,6 +48,38 @@ namespace SystemsModelling_Kursach
 
                 model.StatsModule.PrintStats();
             }
+
+            Console.WriteLine("For F1:");
+            for (int i = 0; i < 30; i++)
+            {
+                Console.WriteLine($"Simulation number {i + 1}");
+                var model = PetriSimFactory.GenericTransportSystem(
+                    10, 4,
+                    5, 5,
+                    3, 2,
+                    2.5m, 1.5m
+                    );
+
+                model.PetriSim.Simulate(100_000, 11250);
+
+                Console.WriteLine($"{model.StatsModule.GetStats()["OG"]:0.00000}");
+            }
+
+            Console.WriteLine("For F2:");
+            for (int i = 0; i < 30; i++)
+            {
+                Console.WriteLine($"Simulation number {i + 1}");
+                var model = PetriSimFactory.ModifiedTransportSystem(
+                    10, 4,
+                    5, 5,
+                    3, 2,
+                    2.5m, 1.5m
+                    );
+
+                model.PetriSim.Simulate(100_000, 17_250);
+
+                Console.WriteLine($"{model.StatsModule.GetStats()["OG"]:0.00000}");
+            }
         }
     }
 }

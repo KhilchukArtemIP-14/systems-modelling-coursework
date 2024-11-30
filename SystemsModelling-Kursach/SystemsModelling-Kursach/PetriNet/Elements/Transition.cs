@@ -13,26 +13,26 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.Elements
         private int _priority;
         private IDelayGenerator _generator;
         private List<decimal> _timeOuts;
-        private List<Position> _inPositions;
-        private List<Position> _outPositions;
+        private List<Place> _inPlaces;
+        private List<Place> _outPlaces;
 
         public decimal MinTimeOut=> _timeOuts.Any() ? _timeOuts.Min() : Decimal.MaxValue;
         public string Name => _name;
         public int Priority => _priority;
         public int Buffer => _timeOuts.Count;
-        public bool CanTrigger => _inPositions.All(p => p.MarkerCount != 0);
+        public bool CanTrigger => _inPlaces.All(p => p.MarkerCount != 0);
 
         public Transition(
             string name,
             IDelayGenerator generator,
-            List<Position> inPositions,
-            List<Position> outPositions,
+            List<Place> inPlaces,
+            List<Place> outPlaces,
             int priority = 0)
         {
             _name = name;
             _generator = generator;
-            _inPositions = inPositions;
-            _outPositions = outPositions;
+            _inPlaces = inPlaces;
+            _outPlaces = outPlaces;
             _timeOuts = new();
             _priority = priority;
         }
@@ -41,7 +41,7 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.Elements
         {
             if (CanTrigger)
             {
-                foreach (var position in _inPositions)
+                foreach (var position in _inPlaces)
                 {
                     position.DecreaseMark();
                 }
@@ -54,7 +54,7 @@ namespace SystemsModelling_Kursach.BuildingBlocks.PetriNet.Elements
         {
             if (Buffer != 0)
             {
-                foreach(var position in _outPositions)
+                foreach(var position in _outPlaces)
                 {
                     position.IncreaseMark();
                 }
